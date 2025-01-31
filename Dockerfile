@@ -24,4 +24,7 @@ RUN pip install --no-cache-dir --use-deprecated=legacy-resolver -r requirements.
 COPY ./app .
 ENV CONFIG_PATH=/app/config/config2.yaml
 
+# Добавляем аргумент сборки
+ARG PORT
+
 CMD ["python", "main.py"]

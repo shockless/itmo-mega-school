@@ -1,7 +1,10 @@
 services:
   fastapi-service:
-    build: .
-    container_name: fastapi-baseline
+    build:
+      context: .
+      args:
+        PORT: 8000
+    container_name: search-avilov
     network_mode: "host"
     restart: unless-stopped
     environment:

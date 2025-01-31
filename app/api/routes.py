@@ -3,11 +3,11 @@ from pathlib import Path
 
 from agents.search import Search
 from fastapi import APIRouter
-
+from metagpt.const import METAGPT_ROOT
 from .models import QueryRequest, QueryResponse
 
 router = APIRouter()
-search = Search(config_path=os.getenv("CONFIG_PATH"))
+search = Search(config_path=METAGPT_ROOT / "config/config2.yaml")
 
 
 @router.post("/request", response_model=QueryResponse)
