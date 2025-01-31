@@ -1,0 +1,5 @@
+uvicorn
+openai
+metagpt @ git+https://github.com/geekan/MetaGPT@main
+fastapi
+pydantic
