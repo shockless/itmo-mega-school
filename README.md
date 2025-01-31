@@ -10,23 +10,6 @@
 - Анализирует и структурирует найденную информацию
 - Предоставляет точные и релевантные ответы
 
-## Структура проекта
-
-app/
-├── agents/
-│   ├── __init__.py
-│   ├── researcher.py
-│   ├── search.py
-│   └── test_environment.py
-├── config/
-│   └── config2.yaml
-├── api/
-│   ├── __init__.py
-│   └── main.py
-├── Dockerfile
-├── requirements.txt
-└── docker-compose.yml
-
 ## Установка и запуск
 
 1. Склонируйте репозиторий:
