@@ -61,6 +61,10 @@ class JsonSerialization:
     async def extract_json(self, question_answers, summary: Message, max_urls=3):
         user_prompt = f"Here is a query from user: {question_answers}\n\n and here is a summary of sources: {summary.instruct_content.content}, used urls: {summary.instruct_content.urls}. If the user query contains numbered choices, return the correct choice number in the answer field. Else return None in the answer field. Even if the answer is number, if the user query does not contain any numbered choices, return None in the answer field."
         answer_json = await self.extract_entities(user_prompt)
-        answer_json["reasoning"] = summary.instruct_content.content
+        answer_json["reasoning"] = (
+            summary.instruct_content.content
+            + "\n"
+            + "Сгенерированно с помощью модели {}".format(self.model)
+        )
         answer_json["sources"] = summary.instruct_content.urls[:max_urls]
         return answer_json
