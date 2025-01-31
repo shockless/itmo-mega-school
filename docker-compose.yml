@@ -2,10 +2,4 @@ services:
   app:
     build:
       context: .
-      args:
-        OPENAI_API_KEY: ${OPENAI_API_KEY}
-    ports:
-      - "8000:8000"
-    privileged: true
-    env_file:
-      - .env
+    network_mode: "host"
