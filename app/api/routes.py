@@ -7,7 +7,7 @@ from fastapi import APIRouter
 from .models import QueryRequest, QueryResponse
 
 router = APIRouter()
-search = Search(config_path=Path(os.getenv("CONFIG_PATH")))
+search = Search(config_path=os.getenv("CONFIG_PATH"))
 
 
 @router.post("/request", response_model=QueryResponse)

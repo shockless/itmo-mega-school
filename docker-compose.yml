@@ -1,10 +1,11 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        OPENAI_API_KEY: ${OPENAI_API_KEY}
     ports:
       - "8000:8000"
-    volumes:
-      - ./app:/app
-      - ./config.yaml:/app/config.yaml
+    privileged: true
     env_file:
       - .env

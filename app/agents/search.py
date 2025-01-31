@@ -4,14 +4,24 @@ import asyncio
 from .json_serialization import JsonSerialization
 from metagpt.config2 import Config
 from pathlib import Path
+import yaml
 
 
 class Search:
-    def __init__(self, config_path: Path):
-        self.config = Config.from_yaml_file(config_path)
+    def __init__(
+        self,
+        config_path: Path,
+        decomposition_nums: int = 3,
+        url_per_query: int = 3,
+    ):
+        with open(config_path, "r") as file:
+            self.config = yaml.safe_load(file)
+        self.metagpt_config = Config.from_llm_config(self.config["llm"])
         self.json_serialization = JsonSerialization(
-            api_key=self.config.llm.api_key, model=self.config.llm.model
+            api_key=self.config["llm"]["api_key"], model=self.config["llm"]["model"]
         )
+        self.decomposition_nums = decomposition_nums
+        self.url_per_query = url_per_query
 
     async def get_answer(self, query, max_urls=3):
         summary = await self.get_summary(query)
@@ -22,9 +32,9 @@ class Search:
 
     async def get_summary(self, query):
         researcher = ITMOResearcher(
-            decomposition_nums=self.config.decomposition_nums,
-            url_per_query=self.config.url_per_query,
-            config=self.config,
+            decomposition_nums=self.decomposition_nums,
+            url_per_query=self.url_per_query,
+            config=self.metagpt_config,
         )
         msg = await researcher.run(query)
         return msg

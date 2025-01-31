@@ -4,4 +4,4 @@ llm:
   api_type: "openai"  # or azure / ollama / open_llm etc. Check LLMType for more options
   model: "gpt-4o-mini"  # or gpt-3.5-turbo-1106 / gpt-4-1106-preview
   base_url: "https://api.openai.com/v1"  # or forward url / other llm url
-  api_key: ${OPENAI_API_KEY}
+  api_key: "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"
