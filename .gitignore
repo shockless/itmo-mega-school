@@ -14,7 +14,6 @@ config.yaml
 app/metagpt/
 app/logs/
 app/workspace/
-app/config/
 
 
 # Byte-compiled / optimized / DLL files
