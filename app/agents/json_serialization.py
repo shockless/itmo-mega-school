@@ -44,18 +44,15 @@ class JsonSerialization:
 
         result_from_gpt = response.choices[0].message.parsed
 
-        print(result_from_gpt)
         json_result = result_from_gpt.model_dump()
         for key in json_result:
             if key == "answer":
-                print(json_result[key])
                 if isinstance(json_result[key], str):
                     json_result[key] = (
                         int(json_result[key]) if json_result[key].isdigit() else -1
                     )
                 if json_result[key] == -1:
                     json_result[key] = None
-        print(json_result)
         return json_result
 
     async def extract_json(self, question_answers, summary: Message, max_urls=3):
